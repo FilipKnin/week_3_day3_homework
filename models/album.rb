@@ -1,3 +1,5 @@
+require('pg')
+
 class Album
 
   attr_accessor(:title, :genre)
@@ -9,5 +11,7 @@ class Album
     @id = options['id'] if options['id'].to_i()
     @artist_id = options['artist_id'].to_i()
   end
+
+
 
 end

@@ -21,3 +21,6 @@ album2 = Album.new({
   'genre'     => 'rock and roll',
   'artist_id' => artist2.id
   })
+
+  artist1.save
+  artist2.save
