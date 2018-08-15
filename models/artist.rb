@@ -29,7 +29,16 @@ class Artist
     return all_artists.map{ |artist| Artist.new(artist)}
   end
 
-
+  def all_albums()
+    db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+    sql = "SELECT * FROM albums
+    WHERE artist_id = $1"
+    values = [@id]
+    db.prepare('all_albums', sql)
+    list = db.exec_prepared('all_albums', values)
+    db.close()
+    return list.map { |album| Album.new(album) }
+  end
 
 
 

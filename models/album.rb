@@ -32,6 +32,16 @@ class Album
     return all_albums.map{ |album| Album.new(album)}
   end
 
+  # def Album.list_all_artists(artist_id)
+  #   db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+  #   sql = "SELECT * from artists
+  #         WHERE id = $1"
+  #         values = (@artist_id)
+  #   db.prepare("list_all_artists", sql)
+  #   db.exec_prepared("list_all_artists", values)
+  #   db.close()
+  # end
+
 
 
 end
