@@ -1,10 +1,13 @@
 class Album
-  attr_accessor :first_name, :last_name
-  attr_reader  :id
 
-  def initialize(options)
-    @first_name = options['first_name']
-    @last_name = options['last_name']
-    @id = options['id'].to_i if options['id']
+  attr_accessor(:title, :genre)
+  attr_reader(:id, :artist_id)
+
+  def initialize(options) #options is it hash?
+    @title = options['title']
+    @genre = options['genre']
+    @id = options['id'] if options['id'].to_i()
+    @artist_id = options['artist_id'].to_i()
   end
+
 end
