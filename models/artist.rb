@@ -57,6 +57,16 @@ class Artist
     db.prepare("delete_one", sql)
     db.exec_prepared("delete_one", values)
     db.close()
+  end
+
+  def Artist.find_artist_id(id)
+    db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+    sql = "SELECT * FROM artists WHERE id = $1"
+    values = [id]
+    db.prepare("find_artist_id", sql)
+    result = db.exec_prepared("find_artist_id", values)
+    db.close()
+    return result.map { |artist| Artist.new(artist)  }
 
   end
 

@@ -74,6 +74,17 @@ class Album
     db.close()
   end
 
+  def Album.find_album_id(id)
+    db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+    sql = "SELECT * FROM albums WHERE id = $1"
+    values = [id]
+    db.prepare("find_album_id", sql)
+    result = db.exec_prepared("find_album_id", values)
+    db.close()
+    return result.map { |album| Album.new(album)  }
+
+  end
+
 
 
 
