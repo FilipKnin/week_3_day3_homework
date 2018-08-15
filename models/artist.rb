@@ -20,6 +20,17 @@ class Artist
     db.close()
   end
 
+  def Artist.all()
+    db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+    sql = "SELECT * FROM artists"
+    db.prepare('all', sql)
+    all_artists = db.exec_prepared('all')
+    db.close()
+    return all_artists.map{ |artist| Artist.new(artist)}
+  end
+
+
+
 
 
 end

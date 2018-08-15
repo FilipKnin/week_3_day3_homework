@@ -27,3 +27,9 @@ album2 = Album.new({
 
   album1.save
   album2.save
+
+  Album.all()
+  Artist.all()
+
+  binding.pry
+  nil

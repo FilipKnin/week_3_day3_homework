@@ -23,6 +23,15 @@ class Album
     db.close()
   end
 
+  def Album.all()
+    db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+    sql = "SELECT * FROM albums"
+    db.prepare('all', sql)
+    all_albums = db.exec_prepared('all')
+    db.close()
+    return all_albums.map{ |album| Album.new(album)}
+  end
+
 
 
 end
