@@ -10,6 +10,9 @@ artist2 = Artist.new({
   'name' => 'The Rolling Stones'
   })
 
+  artist1.save
+  artist2.save
+
 album1 = Album.new({
   'title'     => 'Reptile',
   'genre'     => 'rock',
@@ -22,5 +25,5 @@ album2 = Album.new({
   'artist_id' => artist2.id
   })
 
-  artist1.save
-  artist2.save
+  album1.save
+  album2.save
