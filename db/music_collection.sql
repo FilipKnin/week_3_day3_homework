@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS albums;
 CREATE TABLE artists(
   id SERIAL8 PRIMARY KEY,
   name VARCHAR(255) NOT NULL
-
 );
 
 CREATE TABLE albums(
