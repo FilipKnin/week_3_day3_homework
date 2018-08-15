@@ -36,12 +36,47 @@ class Album
     db = PG.connect({dbname: 'music_collection', host: 'localhost'})
     sql = "SELECT * from artists
           WHERE id = $1"
-          values = [@artist_id]
+    values = [@artist_id]
     db.prepare("list_all_artists", sql)
     list = db.exec_prepared("list_all_artists", values)
     db.close()
     return list.map { |artist| Artist.new(artist)  }[0]
   end
+
+  def update()
+    db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+    sql = "UPDATE albums
+          SET (title, genre) =
+          (
+            $1, $2
+            ) WHERE id = $3" #why we need to pass where id?
+    values = [@title, @genre, @id]
+    db.prepare("update", sql)
+    db.exec_prepared("update", values)
+    db.close()
+  end
+
+
+  def delete()
+    db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+    sql = "DELETE FROM albums WHERE id = $1"
+    values = [@id]
+    db.prepare("delete_one", sql)
+    db.exec_prepared("delete_one", values)
+    db.close()
+  end
+
+  def Album.delete_all
+    db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+    sql = "DELETE FROM albums"
+    db.prepare("delete_all", sql)
+    db.exec_prepared("delete_all")
+    db.close()
+  end
+
+
+
+
 
 
 

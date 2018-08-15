@@ -1,7 +1,7 @@
 require('pg')
 
 class Artist
-  attr_accessor :first_name, :last_name
+  attr_accessor :name
   attr_reader  :id
 
   def initialize(options)
@@ -38,6 +38,26 @@ class Artist
     list = db.exec_prepared('all_albums', values)
     db.close()
     return list.map { |album| Album.new(album) }
+  end
+
+  # def update()
+  #   db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+  #   sql = "UPDATE artists
+  #         SET (name) = ($1) WHERE id = $2" #why we need to pass where id?
+  #   values = [@name, @id]
+  #   db.prepare("update", sql)
+  #   db.exec_prepared("update", values)
+  #   db.close()
+  # end
+
+  def delete()
+    db = PG.connect({dbname: 'music_collection', host: 'localhost'})
+    sql = "DELETE FROM artists WHERE id = $1"
+    values = [@id]
+    db.prepare("delete_one", sql)
+    db.exec_prepared("delete_one", values)
+    db.close()
+
   end
 
 
